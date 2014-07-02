@@ -21,7 +21,7 @@ De code is gecloned in: `$GOPATH/src/github.com/pjvds/goworkshop`.
 
 ## Hello World
 
-Every Go program is made up of package. Programs start running in package `main`. 
+Every Go program is made up of packages. Programs start running in package `main`. 
 
 Package are imported with the `import` keyword, in our example the `fmt` package is imported and used to print to the console.
 
@@ -35,7 +35,7 @@ Multiple imports can be grouped by a _factored_ import:
         "net/http"
     )
 
-After an package is imported the public types become available to the context that imports them and can be accessed by via the package name. E.q., `fmt.Println` or `http.Get("http://google.com")`.
+After an package is imported the public types become available to the context that imports them and can be accessed by via the package name, the last part of the import: e.q., `fmt.Println` or `http.Get("http://google.com")`.
 
 ### Execsise
 
@@ -163,3 +163,95 @@ Rob and Christian talk is not that interesting, definitely not interesting enoug
 Hints:
 
 * A program exists when the `main` method returns.
+
+## Chinese whisper
+
+How expensive are goroutines and channels? Lets find out by doing a chinese whisper game. The initial exersise code provides two methods, `start` and `whisper`. The `whisper` method gets the value from the `from` channel and, adds `1` to it, and writes it to the `to` channel.
+
+### Exersise
+
+* Execute the code to see it prints `2`.
+* Change the `main` method so that is creates `10000` goroutines and whispers between them (like the circle in the classroom from your childhood).
+* Time the execution via the commandline: `time go run main.go` (first time you do this it also includes build time, so run twice).
+
+## Struct
+
+A struct is a collection of fields:
+
+    type Foo struct {
+        Bar int
+        Baz int
+    }
+
+Structs can be initialized the following:
+
+    foo := Foo{
+        Bar: 1,
+        Baz: 2, // Yes, trailing comma
+    }
+
+### Exersise
+
+* Define a struct called `Rect` with two `int` fields; `Width` and `Height`.
+* Initialize a new instance variable of the `Rect` type called `r` and set the fields to a value of your liking.
+* Calculate the surface area of the rectangle and print the result to the console.
+
+## Methods
+
+Functions in Go can be attached to an type to make them a method.
+
+    type Foo struct {
+        Bar int
+        Baz int
+    }
+
+    func (f *Foo) GetHighest() int {
+        if f.Bar > f.Baz {
+            return f.Bar
+        }
+        return f.Baz
+    }
+
+### Exersise
+
+* Add a method to the `Rect` type that calculates the area and returns the result.
+* Use this method to calculate the area and print the value from the `main` function.
+
+## Interface
+
+Go is well known of its flexible type system. One good example of this is the way Go handles interfaces. Here is how an interface is defined:
+
+    type Highester interface {
+        GetHighest() int
+    }
+
+When a type has all methods defined by an interface, then it implements that interface automaticly. 
+So to implement the `Highester` interface you just attach a method that matches the signature to your type:
+
+    type Foo struct {
+        Bar int
+    }
+
+    func (f *Foo) GetHighest() int {
+        if f.Bar > f.Baz {
+            return f.Bar
+        }
+        return f.Baz
+
+    }
+
+### Exersise
+
+* Implement the `Area` interface for the `Rect`, `Square` and `Circle` types.
+
+## Errors
+
+Go handles errors differently that most other modern languages. Go does not think that errors are an exceptional case. It is something you just need to deal with. So uses the power of multiple return values, and the strictness that you cannot assign a variable and not use it to encourage defensive programming.
+
+In this example the `GetNumber` method returns a number and an error. The convention is that the normal results go first, and the last result is an error object. If the error is not nil, you know something went wrong.
+
+### Exersise
+
+* Try to build the code without changing it.
+* Try to assign the error result to a variable as well and retry to build it.
+* Handle the error value if it is not nil, by printing it to the console.
