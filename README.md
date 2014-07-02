@@ -1,25 +1,28 @@
 # Learn a new language Go
 
-## Installatie
+## Installation
 
-In deze workshop gaan we er vanuit dat je Go beschikbaar is op je machine en de volgende environment variable zijn geset:
+We assume that you have installed Go as described in <http://golang.org/doc/install>.
 
-* Env var `GOROOT`, verwijst naar je Go binaries, bijvoorbeeld: `/usr/local/go`
-* Env var `GOROOT`, is aan je `PATH` toegevoegd.
-* Evn var `GOPATH`, verwijst naar `$HOME/go` en bevat de volgende drie mappen: `src`, `pkg`, `bin`.
-* Het commando `go version` geeft het volgende terug: `go version go1.3 linux/amd64`.
+Install the package that matches you platform an set the following environment variables:
 
-Voor meer informatie over het installeren van Go, zie: <http://golang.org/doc/install>.
+* Env var `GOROOT`, points to the Go binaries, e.q.: `/usr/local/go`
+* Env var `GOROOT`, should be added to your `PATH`
+* Evn var `GOPATH`, should be set to a directory will hold you Go workspace like `$HOME/go` and should contains 3 folders: `src`, `pkg`, `bin`.
+* Now `go version` should output something like: `go version go1.3 linux/amd64`.
 
 ## Clone de workshop repository
 
-Voer het volgende command uit om de workshop repository via het `go` command op te halen:
-
     $ go get github.com/pjvds/goworkshop
 
-De code is gecloned in: `$GOPATH/src/github.com/pjvds/goworkshop`.
+Code will be cloned into your Go workspace: `$GOPATH/src/github.com/pjvds/goworkshop`.
 
-## Hello World
+1. `cd` into the `goworkshop`
+2. open the `readme`
+3. each exersise has its own directy
+4. code can be run by `go run main.go` from the exersise directories
+
+## 01 Hello World
 
 Every Go program is made up of packages. Programs start running in package `main`. 
 
@@ -46,7 +49,7 @@ Hints:
 1. The `rand` package is located at `math/rand`
 2. The `Intn` method from the `rand` package can be used to get an positive random `int`.
 
-## Functions
+## 02 Functions
 
 Functions in Go are defined with the `func` keyword followed by the name of the function, zero or more arguments and finally the return values, e.q.:
 
@@ -58,7 +61,7 @@ Functions in Go are defined with the `func` keyword followed by the name of the 
 
 Add the required function to make the code compile and print "hello world" to the console.
 
-## Odd or even
+## 03 Odd or even
 
 ### Variables
 
@@ -94,7 +97,7 @@ In contrast to C or java, does Go allow you to start an `if` statement with a sh
 
 Add the required function to make the code compile and print make sure it returns the correct result for 13, or any other int value.
 
-## Go routines
+## 04 Go routines
 
 A goroutine is a lightweight thread managed by the Go runtime. You can invoke a function in a new go routines with the `go` keyword:
 
@@ -109,7 +112,7 @@ Hints:
 * All go routines get terminated when `main` returns.
 * `time.Sleep` pauses the current routine for at least the duration.
 
-## Channels
+## 05 Channels
 
 Channels are a typed conduit through which you can send and receive values.
 
@@ -138,7 +141,7 @@ Hints:
 * You can create a endles loop with the `for` keyword: `for{ ... }`.
 * Don't worry about the endles loop you create, `ctrl`+`c` should kill your process.
 
-## Select
+## 07 Select
 
 The select statement lets a goroutine wait on multiple communication operations.
 
@@ -164,7 +167,7 @@ Hints:
 
 * A program exists when the `main` method returns.
 
-## Chinese whisper
+## 08 Chinese whisper
 
 How expensive are goroutines and channels? Lets find out by doing a chinese whisper game. The initial exersise code provides two methods, `start` and `whisper`. The `whisper` method gets the value from the `from` channel and, adds `1` to it, and writes it to the `to` channel.
 
@@ -174,7 +177,7 @@ How expensive are goroutines and channels? Lets find out by doing a chinese whis
 * Change the `main` method so that is creates `10000` goroutines and whispers between them (like the circle in the classroom from your childhood).
 * Time the execution via the commandline: `time go run main.go` (first time you do this it also includes build time, so run twice).
 
-## Struct
+## 09 Struct
 
 A struct is a collection of fields:
 
@@ -196,7 +199,7 @@ Structs can be initialized the following:
 * Initialize a new instance variable of the `Rect` type called `r` and set the fields to a value of your liking.
 * Calculate the surface area of the rectangle and print the result to the console.
 
-## Methods
+## 10 Methods
 
 Functions in Go can be attached to an type to make them a method.
 
@@ -217,7 +220,7 @@ Functions in Go can be attached to an type to make them a method.
 * Add a method to the `Rect` type that calculates the area and returns the result.
 * Use this method to calculate the area and print the value from the `main` function.
 
-## Interface
+## 11 Interface
 
 Go is well known of its flexible type system. One good example of this is the way Go handles interfaces. Here is how an interface is defined:
 
@@ -244,7 +247,7 @@ So to implement the `Highester` interface you just attach a method that matches 
 
 * Implement the `Area` interface for the `Rect`, `Square` and `Circle` types.
 
-## Errors
+## 12 Errors
 
 Go handles errors differently that most other modern languages. Go does not think that errors are an exceptional case. It is something you just need to deal with. So uses the power of multiple return values, and the strictness that you cannot assign a variable and not use it to encourage defensive programming.
 
