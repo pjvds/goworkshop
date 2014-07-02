@@ -121,14 +121,45 @@ You create them with the `make` keyword:
 You can send and receive with the `<-` operator:
 
     c <- "hello world" // Send string to channel `c`
-    s := <- c          // receive from channel, and assign value to `s`
-
-Channels are blocking by default, which means reading from a channel blocks until there is a value available, and sending to a channel is blocked until the value is received by another routine.
+    v := <- c          // receive from channel, and assign value to `v`
 
 ### Exersise
 
-Instead of using `time.Sleep` to wait while rob and christian talk, use an channel to block the execution of the `main` function for at least `10` seconds.
+Change the code so that Rob and Christian do not talk to directly to the console (`fmt.Printf`), but to a channel instead.
+
+* Create a new channel in the `main` method.
+* Pass the channel as an argument to the `talk` method.
+* Change the `talk` method body so it talks into the channel instead of to the console directly.
+* Read from the channel in an endles loop from the `main` method and print the values to the console with `fmt.Printf`.
 
 Hints:
 
-* The `time.After` method returns a channel imidiatly and sends the current time on the returned channel after the specified duration.
+* Use `fmt.Sprintf` instead of `fmt.Printf` to get a string value instead of printing it to the console.
+* You can create a endles loop with the `for` keyword: `for{ ... }`.
+* Don't worry about the endles loop you create, `ctrl`+`c` should kill your process.
+
+## Select
+
+The select statement lets a goroutine wait on multiple communication operations.
+
+A select blocks until one of its cases can run, then it executes that case. It chooses one at random if multiple are ready. 
+
+    select {
+        case v := <-chanA:
+            fmt.Printf("value from chanA: %v", v)
+        case v := <-chanB:
+            fmt.Printf("value from chanB: %v", v)
+    }
+
+### Exersise
+
+Rob and Christian talk is not that interesting, definitely not interesting enough to listen to it endlessly.
+
+* Create a channel with `time.After` that creates a channel and waits in a goroutine for the duration to elapse and then sends the current time on the returned channel.
+* In the `for` loop use `select` to select from both channels.
+* In case of a value from `c`, print to the console.
+* In case of a value from the timeout channel, print "bye!" to the console and exit the program.
+
+Hints:
+
+* A program exists when the `main` method returns.
