@@ -255,3 +255,13 @@ In this example the `GetNumber` method returns a number and an error. The conven
 * Try to build the code without changing it.
 * Try to assign the error result to a variable as well and retry to build it.
 * Handle the error value if it is not nil, by printing it to the console.
+
+## Concurrent Prime Generator
+
+Its time to take all you learned in practise and try to complete this single goals:
+
+* Creating a prime generator that can create all of the primes below 2 million, in less than a minute.
+
+Hints:
+
+Set the environment variable `GOMAXPROCS` to the number of cores in your machine to execute the go routines in parallel.
