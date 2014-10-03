@@ -2,25 +2,25 @@
 
 ## Installation
 
-We assume that you have installed Go as described in <http://golang.org/doc/install>.
+I assume that you have installed Go as described in <http://golang.org/doc/install>.
 
-Install the package that matches you platform an set the following environment variables:
+Verify the install by opening a new terminal and execute `go version`, the output should look like this:
 
-* Env var `GOROOT`, points to the Go binaries, e.q.: `/usr/local/go`
-* Env var `GOROOT`, should be added to your `PATH`
-* Evn var `GOPATH`, should be set to a directory that will hold your Go workspace like `$HOME/go` and should contains 3 folders: `src`, `pkg`, `bin`.
-* Now `go version` should output something like: `go version go1.3 linux/amd64`.
+`go version go1.3 linux/amd64`
 
-## Clone de workshop repository
+Now we setup a workspace by doing the following:
 
-    $ go get github.com/pjvds/goworkshop
+* Open an terminal and change the directory to your `$HOME` dir (My Documents for Windows).
+* Create a new directory called `go` and add the following 3 folders to is: `src`, `pkg` and `bin`.
+* Add an environment variable `GOPATH` with the value `$HOME/go`.
+* Get the workshop code by executing: `go get github.com/pjvds/goworkshop`. The code will be located in `$GOPATH/src/github.com/pjvds/goworkshop`
+* `cd` into that directory and open the `readme`.
 
-Code will be cloned into your Go workspace: `$GOPATH/src/github.com/pjvds/goworkshop`.
+## Workshop structure
 
-1. `cd` into the `goworkshop`
-2. open the `readme`
-3. each exercise has its own directy
-4. code can be run by `go run main.go` from the exercise directories
+1. each exercise has its own directory.
+2. descriptions and hints are in this `readme`, the starting code of the exercise in the directory.
+3. code can be run by `go run main.go` from the exercise directories.
 
 ## 01 Hello World
 
