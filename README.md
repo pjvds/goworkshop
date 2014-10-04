@@ -268,3 +268,13 @@ It's time to take all you learned in practise and try to complete this single go
 Hints:
 
 Set the environment variable `GOMAXPROCS` to the number of cores in your machine to execute the go routines in parallel.
+
+### 99 Exercise 
+
+The goal is to develop an server that accepts requests for callbacks. Simply, it receives an http request that holds an `url` fields that represents the url that should be called back by the server, and a `after` field that tells after how many milliseconds the server should do a GET request to that url.
+
+The directory contains two files:
+1: `api.go` that holds the server code
+2: `api_test.go` that has holds the unit tests
+
+You can `cd` into the `99-callback` directory and execute `go get` to get the dependencies. After that command succeeds you can execute `go test` to execute the unit tests. There are failing tests now and your job is to write the implementation so they will succeed.
